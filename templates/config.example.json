@@ -1,0 +1,5 @@
+{
+  "usageScan": false,
+  "exclude": ["plugin-or-skill-name-to-skip"],
+  "threshold": 0.35
+}

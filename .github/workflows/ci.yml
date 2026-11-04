@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  selftest:
+    name: selftest (${{ matrix.os }}, node ${{ matrix.node }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node scripts/validate-skills.mjs
+      - run: node skills/skill-audit/scripts/cap-scan.mjs --selftest
+      - run: node skills/skill-audit/scripts/apply.mjs --selftest
+
+  plugin-validate:
+    name: claude plugin validate (pinned CLI)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate plugin + marketplace manifests (no login needed)
+        run: |
+          export HOME="$(mktemp -d)"
+          npx -y @anthropic-ai/claude-code@2.1.318 plugin validate .
+
+  install-smoke:
+    name: install smoke test (skills CLI)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install into a throwaway HOME with a pinned skills CLI
+        env:
+          DISABLE_TELEMETRY: '1'
+          DO_NOT_TRACK: '1'
+        run: |
+          export HOME="$(mktemp -d)"
+          mkdir -p "$HOME/.claude" "$HOME/.agents"
+          npx -y skills@1.7.6 add . -g -a claude-code -a codex -y
+          test -f "$HOME/.agents/skills/skill-router/SKILL.md"
+          test -f "$HOME/.agents/skills/skill-audit/SKILL.md"
+          test -f "$HOME/.agents/skills/skill-audit/scripts/cap-scan.mjs"
+          test -f "$HOME/.agents/skills/skill-audit/references/auditor.md"
+          node "$HOME/.agents/skills/skill-audit/scripts/cap-scan.mjs" --selftest
+          echo "install smoke: PASS"
+
+  hygiene:
+    name: no personal data or secrets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan tracked files
+        run: |
+          if git grep -nIE 'C:\\Users\\|/Users/[A-Za-z]|/home/[a-z]+/|gh[pousr]_[A-Za-z0-9]{20,}|github_pat_|AKIA[0-9A-Z]{16}' -- . ':!skills/skill-audit/scripts/cap-scan.mjs' ':!skills/skill-audit/scripts/apply.mjs' ':!skills/skill-audit/scripts/lib/common.mjs' ':!.github/workflows/ci.yml'; then
+            echo "Found personal paths or secrets"; exit 1
+          fi
+          echo "hygiene: PASS"

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="t d">
+  <title id="t">How AI Agent Skill Router works</title>
+  <desc id="d">Top lane: every non-trivial task goes through skill-router, which picks skills, a subagent and MCP tools and announces them. Bottom lane: when you run skill-audit, a scanner inventories everything, an auditor finds overlaps, you approve each change, and apply makes it with undo.</desc>
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7DD3FC"/><stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#A78BFA"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="520" rx="24" fill="#0B1020"/>
+  <g font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif">
+    <text x="48" y="62" fill="#7DD3FC" font-size="15" font-weight="700" letter-spacing="3">EVERY TASK · AUTOMATIC</text>
+    <text x="48" y="292" fill="#C4B5FD" font-size="15" font-weight="700" letter-spacing="3">ONLY WHEN YOU RUN /skill-audit</text>
+
+    <g font-size="16" font-weight="600" text-anchor="middle">
+      <!-- lane 1 -->
+      <rect x="48" y="88" width="190" height="120" rx="16" fill="#111827" stroke="#334155"/>
+      <text x="143" y="140" fill="#F1F5F9">Your request</text>
+      <text x="143" y="166" fill="#94A3B8" font-size="13" font-weight="400">"add login + tests"</text>
+
+      <rect x="300" y="88" width="250" height="120" rx="16" fill="#0F172A" stroke="url(#a)" stroke-width="2"/>
+      <text x="425" y="132" fill="#F8FAFC" font-size="18" font-weight="800">skill-router</text>
+      <text x="425" y="158" fill="#94A3B8" font-size="13" font-weight="400">classify · read registry</text>
+      <text x="425" y="178" fill="#94A3B8" font-size="13" font-weight="400">pick the minimum set</text>
+
+      <rect x="612" y="88" width="300" height="120" rx="16" fill="#111827" stroke="#334155"/>
+      <text x="762" y="128" fill="#E2E8F0" font-size="13" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-weight="500">Router → skills: tdd, security-review</text>
+      <text x="762" y="152" fill="#E2E8F0" font-size="13" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-weight="500">· agent: code-reviewer</text>
+      <text x="762" y="176" fill="#E2E8F0" font-size="13" font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-weight="500">· tools: github, playwright</text>
+
+      <rect x="974" y="88" width="178" height="120" rx="16" fill="#111827" stroke="#334155"/>
+      <text x="1063" y="142" fill="#F1F5F9">Work done</text>
+      <text x="1063" y="166" fill="#94A3B8" font-size="13" font-weight="400">with the right tools</text>
+
+      <!-- lane 2 -->
+      <rect x="48" y="318" width="190" height="140" rx="16" fill="#111827" stroke="#334155"/>
+      <text x="143" y="366" fill="#F1F5F9">cap-scan</text>
+      <text x="143" y="392" fill="#94A3B8" font-size="13" font-weight="400">skills · agents · plugins</text>
+      <text x="143" y="412" fill="#94A3B8" font-size="13" font-weight="400">MCP · usage (opt-in)</text>
+
+      <rect x="300" y="318" width="250" height="140" rx="16" fill="#0F172A" stroke="url(#a)" stroke-width="2"/>
+      <text x="425" y="366" fill="#F8FAFC" font-size="18" font-weight="800">capability-auditor</text>
+      <text x="425" y="392" fill="#94A3B8" font-size="13" font-weight="400">duplicates · unused</text>
+      <text x="425" y="412" fill="#94A3B8" font-size="13" font-weight="400">merge ideas · registry diff</text>
+
+      <rect x="612" y="318" width="300" height="140" rx="16" fill="#111827" stroke="#334155"/>
+      <text x="762" y="366" fill="#F1F5F9">You approve each item</text>
+      <text x="762" y="392" fill="#94A3B8" font-size="13" font-weight="400">approve · skip · stop</text>
+      <text x="762" y="412" fill="#94A3B8" font-size="13" font-weight="400">no "approve all"</text>
+
+      <rect x="974" y="318" width="178" height="140" rx="16" fill="#111827" stroke="#334155"/>
+      <text x="1063" y="366" fill="#F1F5F9">apply + undo</text>
+      <text x="1063" y="392" fill="#94A3B8" font-size="13" font-weight="400">re-validated · logged</text>
+      <text x="1063" y="412" fill="#94A3B8" font-size="13" font-weight="400">trash, never delete</text>
+    </g>
+
+    <g stroke="#A78BFA" stroke-width="2" fill="none" marker-end="url(#arrow)">
+      <path d="M240 148 H296"/><path d="M552 148 H608"/><path d="M914 148 H970"/>
+      <path d="M240 388 H296"/><path d="M552 388 H608"/><path d="M914 388 H970"/>
+      <path d="M1063 460 V490 H425 V462" stroke-dasharray="6 6"/>
+    </g>
+    <text x="744" y="506" fill="#94A3B8" font-size="13" text-anchor="middle">approved registry rows feed the router</text>
+  </g>
+</svg>
