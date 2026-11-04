@@ -1,0 +1,30 @@
+name: Bug report
+description: Something in skill-router or skill-audit doesn't work
+labels: [bug]
+body:
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options: [Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, Antigravity, OpenCode, Other]
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      placeholder: "OS, Node version, agent version, plugin version"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Command output
+      description: Remove any personal paths or secrets first. Never paste inventory.json or session logs.
+      render: text

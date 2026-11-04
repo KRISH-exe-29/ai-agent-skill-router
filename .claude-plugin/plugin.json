@@ -1,0 +1,24 @@
+{
+  "name": "ai-agent-skill-router",
+  "version": "0.1.0",
+  "description": "Auto-route every task to the right Claude Code skills, subagents, plugins and MCP servers, and audit duplicate or unused skills with safe, approved cleanup.",
+  "author": {
+    "name": "KRISHNA RAJU S",
+    "url": "https://github.com/KRISH-exe-29"
+  },
+  "homepage": "https://github.com/KRISH-exe-29/ai-agent-skill-router",
+  "repository": "https://github.com/KRISH-exe-29/ai-agent-skill-router",
+  "license": "Apache-2.0",
+  "keywords": [
+    "skill-router",
+    "agent-skills",
+    "claude-code",
+    "claude-skills",
+    "skill-manager",
+    "mcp",
+    "subagents",
+    "plugin-manager",
+    "skill-audit",
+    "ai-agents"
+  ]
+}

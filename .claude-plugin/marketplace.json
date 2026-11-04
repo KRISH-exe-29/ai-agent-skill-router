@@ -1,0 +1,15 @@
+{
+  "name": "ai-agent-skill-router",
+  "description": "Skill router and skill audit for Claude Code and every Agent Skills compatible coding agent.",
+  "owner": {
+    "name": "KRISHNA RAJU S",
+    "url": "https://github.com/KRISH-exe-29"
+  },
+  "plugins": [
+    {
+      "name": "ai-agent-skill-router",
+      "source": "./",
+      "description": "Auto-route tasks to the right skills, subagents, plugins and MCP servers; audit and clean up duplicates with per-item approval and undo."
+    }
+  ]
+}

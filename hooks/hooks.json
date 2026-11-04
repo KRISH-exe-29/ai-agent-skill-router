@@ -1,0 +1,15 @@
+{
+  "description": "Reminds the agent once per session to route non-trivial tasks through the skill-router skill.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo Skill routing: before any multi-step, ambiguous or high-impact task, invoke the skill-router skill first and announce the picks in one line. Skip this for quick questions. A skill or tool the user names always wins."
+          }
+        ]
+      }
+    ]
+  }
+}
