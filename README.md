@@ -32,6 +32,20 @@
 
 ---
 
+## 🎞️ The 30-second film
+
+<a href="docs/film/router.mp4">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/film/router-dark.gif">
+    <source media="(prefers-color-scheme: light)" srcset="docs/film/router-light.gif">
+    <img src="docs/film/router-dark.gif" width="100%" alt="Animated terminal film: 812 skills and a typo, skill-router picking the right skill, agent and MCP tool, skill-audit finding duplicates, and eight supported platforms">
+  </picture>
+</a>
+
+<p align="center"><sub>AI Agent Skill Router in 30 seconds. The preview plays silently with subtitles; <a href="docs/film/router.mp4">open the MP4</a> for the narrated version with music.</sub></p>
+
+---
+
 ## 🤔 The problem
 
 You install a skill pack, a few plugins, five MCP servers, a design kit, a "superpowers" bundle… and now your agent has **hundreds of skills it might use**, many of which do the same job.
